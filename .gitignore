@@ -1,0 +1,13 @@
+# IDE
+.idea/**
+.vscode/**
+
+# Vendor
+vendor/**
+
+# Go build
+spiderman
+build/**
+*.exe
+*.out
+*.test
