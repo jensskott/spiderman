@@ -18,3 +18,9 @@ func TestElbV2Client(t *testing.T) {
 	assert.IsType(t, ElbV2Implementation{}, c)
 	assert.IsType(t, session.Session{}, *c.Session)
 }
+
+func TestEcsClient(t *testing.T) {
+	c := EcsClient("us-west-1")
+	assert.IsType(t, EcsImplementation{}, c)
+	assert.IsType(t, session.Session{}, *c.Session)
+}

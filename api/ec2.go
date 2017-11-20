@@ -10,7 +10,7 @@ import (
 
 func (e *Ec2Implementation) SearchVpc(s *parser.Definition) (string, error) {
 	var vpc string
-	fmt.Println(s)
+
 	params := &ec2.DescribeVpcsInput{
 		Filters: []*ec2.Filter{
 			{

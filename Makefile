@@ -18,7 +18,8 @@ vet:
 mockgen:
 	@echo "Generating mocks..."
 	mockgen -source=vendor/github.com/aws/aws-sdk-go/service/ec2/ec2iface/interface.go -destination=$(MOCK_DIR)/mock-ec2iface.go -package=mocks
-	mockgen -source=vendor/github.com/aws/aws-sdk-go/service/elbv2/elbv2iface/interface.go -destination=$(MOCK_DIR)/mock-elbv2iface.go -package=mocks
+	mockgen -source=vendor/github.com/aws/aws-sdk-go/service/elbv2/elbv2iface/interface.go -destination=$(MOCK_DIR)/mock-elbv2iface.go -package=mocks'
+	mockgen -source=vendor/github.com/aws/aws-sdk-go/service/ecs/ecsiface/interface.go -destination=$(MOCK_DIR)/mock-ecsiface.go -package=mocks
 
 test: mockgen
 	@go test ./...

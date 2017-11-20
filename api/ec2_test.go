@@ -2,7 +2,6 @@ package api
 
 import (
 	"errors"
-	"fmt"
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -111,7 +110,6 @@ func TestSearchSubnets(t *testing.T) {
 
 	// Run a mock of the searchSubnets
 	testResp, err := e.SearchSubnets("vpc-9654d5ee")
-	fmt.Println(testResp)
 	// Make sure it does not return error
 	assert.NoError(t, err)
 
