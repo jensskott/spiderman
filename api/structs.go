@@ -19,6 +19,7 @@ type ElbV2Implementation struct {
 	Svc     elbv2iface.ELBV2API
 }
 
+// EcsImplementation for connection to ecs
 type EcsImplementation struct {
 	Session *session.Session
 	Svc     ecsiface.ECSAPI

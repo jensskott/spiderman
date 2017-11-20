@@ -8,10 +8,12 @@ import (
 	"github.com/jensskott/spiderman/parser"
 )
 
+// CreateService in ECS
 func CreateService(def *parser.Definition) {
 
 }
 
+// CreateTaskDefinition for the service in ECS
 func (e *EcsImplementation) CreateTaskDefinition(def *parser.Definition) (string, error) {
 	var env []*ecs.KeyValuePair
 	for _, e := range def.Service.Container.Environment {

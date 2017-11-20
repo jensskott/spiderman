@@ -24,6 +24,7 @@ func ElbV2Client(region string) ElbV2Implementation {
 	return c
 }
 
+// EcsClient for connection to ecs
 func EcsClient(region string) EcsImplementation {
 	var c EcsImplementation
 	c.Session = session.Must(session.NewSession(&aws.Config{Region: aws.String(region)}))

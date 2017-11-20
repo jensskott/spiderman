@@ -8,6 +8,7 @@ import (
 	"github.com/jensskott/spiderman/parser"
 )
 
+// SearchVpc for the correct VPC for the ALB and SG
 func (e *Ec2Implementation) SearchVpc(s *parser.Definition) (string, error) {
 	var vpc string
 
@@ -34,6 +35,7 @@ func (e *Ec2Implementation) SearchVpc(s *parser.Definition) (string, error) {
 	return vpc, nil
 }
 
+// SearchSubnets for the subnets to add to TargetGroup
 func (e *Ec2Implementation) SearchSubnets(vpc string) ([]string, error) {
 	var sgs []string
 	params := &ec2.DescribeSubnetsInput{

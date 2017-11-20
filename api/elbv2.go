@@ -8,6 +8,7 @@ import (
 	"github.com/jensskott/spiderman/parser"
 )
 
+//CreateLb to create the ALB for the service
 func (e *ElbV2Implementation) CreateLb(s *parser.Definition, sg []string, subnets []string) (string, error) {
 	var lb string
 
@@ -30,6 +31,7 @@ func (e *ElbV2Implementation) CreateLb(s *parser.Definition, sg []string, subnet
 	return lb, nil
 }
 
+// CreateLbListener for the ALB
 func (e *ElbV2Implementation) CreateLbListener(s *parser.Definition, lbArn string, tgArn string) (string, error) {
 	var listener string
 
@@ -58,6 +60,7 @@ func (e *ElbV2Implementation) CreateLbListener(s *parser.Definition, lbArn strin
 
 }
 
+// CreateLbTargetGroup for the ALB
 func (e *ElbV2Implementation) CreateLbTargetGroup(s *parser.Definition, vpc string) (string, error) {
 	var tg string
 	params := &elbv2.CreateTargetGroupInput{
