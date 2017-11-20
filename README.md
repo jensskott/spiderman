@@ -1,10 +1,10 @@
 # Spiderman
 
-# Workflow
+## Workflow
 
-1. Create SG for external service
-2. Create ALB (http/tcp)
-3. Create Listener
-4. Create targetgroup
-5. Create task defintion from file
-6. Create service from file
+* Create SG for external service
+* Create ALB (http/tcp)
+* Create Listener
+* Create targetgroup
+* Create task defintion from file
+* Create service from file

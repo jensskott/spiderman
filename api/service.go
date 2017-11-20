@@ -9,8 +9,25 @@ import (
 )
 
 // CreateService in ECS
-func CreateService(def *parser.Definition) {
+func (e *EcsImplementation) CreateService(def *parser.Definition, lb string) (string, error) {
+	taskDefinition, err := e.CreateTaskDefinition(def)
+	if err != nil {
+		return "", err
+	}
 
+	params := &ecs.CreateServiceInput{
+		Cluster:      aws.String(def.Cluster),
+		DesiredCount: aws.Int64(def.Service.Count),
+		LoadBalancers: []*ecs.LoadBalancer{
+			{
+				LoadBalancerName: aws.String(lb),
+			},
+		},
+		ServiceName:    aws.String(def.Service.Name),
+		TaskDefinition: aws.String(taskDefinition),
+	}
+
+	e.Svc.CreateService(params)
 }
 
 // CreateTaskDefinition for the service in ECS

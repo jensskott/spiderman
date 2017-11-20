@@ -4,6 +4,7 @@ package parser
 type ServiceDefinition struct {
 	Name             string              `yaml:"name"`
 	LoadbalancerType string              `yaml:"loadbalancertype"`
+	Count            int64               `yaml:"count"`
 	Container        ContainerDefinition `yaml:"container"`
 }
 

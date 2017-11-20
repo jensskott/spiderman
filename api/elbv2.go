@@ -25,7 +25,7 @@ func (e *ElbV2Implementation) CreateLb(s *parser.Definition, sg []string, subnet
 	}
 
 	for _, l := range resp.LoadBalancers {
-		lb = *l.LoadBalancerArn
+		lb = *l.LoadBalancerName
 	}
 
 	return lb, nil
