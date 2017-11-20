@@ -9,12 +9,7 @@ import (
 )
 
 // CreateService in ECS
-func (e *EcsImplementation) CreateService(def *parser.Definition, lb string) (string, error) {
-	taskDefinition, err := e.CreateTaskDefinition(def)
-	if err != nil {
-		return "", err
-	}
-
+func (e *EcsImplementation) CreateService(def *parser.Definition, lb string, taskDefinition string) (string, error) {
 	params := &ecs.CreateServiceInput{
 		Cluster:      aws.String(def.Cluster),
 		DesiredCount: aws.Int64(def.Service.Count),
@@ -27,7 +22,12 @@ func (e *EcsImplementation) CreateService(def *parser.Definition, lb string) (st
 		TaskDefinition: aws.String(taskDefinition),
 	}
 
-	e.Svc.CreateService(params)
+	resp, err := e.Svc.CreateService(params)
+	if err != nil {
+		return "", err
+	}
+
+	return *resp.Service.ServiceName, nil
 }
 
 // CreateTaskDefinition for the service in ECS
