@@ -17,7 +17,7 @@ func TestCreateLb(t *testing.T) {
 	resp := &elbv2.CreateLoadBalancerOutput{
 		LoadBalancers: []*elbv2.LoadBalancer{
 			{
-				LoadBalancerArn: aws.String("arn:aws:elasticloadbalancing:us-east-1:444622142361:loadbalancer/app/test-cluster-test-service/b81f5af1ac75b08b"),
+				LoadBalancerName: aws.String("test-lb"),
 			},
 		},
 	}
@@ -51,7 +51,7 @@ func TestCreateLb(t *testing.T) {
 	assert.NoError(t, err)
 
 	// Compare respons with what you want to get
-	assert.Equal(t, "arn:aws:elasticloadbalancing:us-east-1:444622142361:loadbalancer/app/test-cluster-test-service/b81f5af1ac75b08b", testResp)
+	assert.Equal(t, "test-lb", testResp)
 }
 
 func TestCreateLbError(t *testing.T) {

@@ -49,4 +49,27 @@ func TestParseDefinitionError(t *testing.T) {
 	_, err = ParseDefinition(yamlFile, "test-cluster")
 
 	assert.Error(t, err)
+
+	_, err = ParseDefinition(yamlFile, "test-cluster")
+
+	assert.Error(t, err)
+}
+
+func TestParseDefinitionMemoryError(t *testing.T) {
+	yamlFileStr := `
+service:
+  name: test-service
+  loadbalancertype: network
+
+  container:
+    protocol: tcp
+    port: 8080
+    memory: 128
+    memoryreservation: 256
+`
+	yamlFile := []byte(string(yamlFileStr))
+
+	_, err := ParseDefinition(yamlFile, "test-cluster")
+
+	assert.Error(t, err)
 }

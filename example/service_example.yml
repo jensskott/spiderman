@@ -1,8 +1,21 @@
 service:
   name: test-service
   loadbalancertype: network
+  count: 1
 
   container:
     protocol: tcp
     port: 8080
+    containerport: 8080
+    cpu: 20
+    memoryreservation: 128
+    memory: 256
+
+    environment:
+    - name: test
+      value: test-value
+    - name: test2
+      value: test-value2
+
+    image: mardle/rest-api-test:latest
 

@@ -3,33 +3,36 @@ package parser
 import (
 	"errors"
 
+	"github.com/jensskott/spiderman/parser"
 	"gopkg.in/yaml.v2"
 )
 
 // ParseDefinition to get the service file into a struct
-func ParseDefinition(yamlFile []byte, cluster string) (Definition, error) {
-	var def Definition
+func ParseDefinition(yamlFile []byte, cluster string) (*parser.Definition, error) {
+	var def *parser.Definition
 
 	err := yaml.Unmarshal(yamlFile, &def)
 	if err != nil {
-		return Definition{}, err
+		return nil, err
 	}
 
 	def.Cluster = cluster
 
-	err = def.validateDefintion()
+	err = def.validateDefinition()
 	if err != nil {
-		return Definition{}, err
+		return nil, err
 	}
 
 	return def, nil
 }
 
-func (d *Definition) validateDefintion() error {
+func (d *Definition) validateDefinition() error {
 	if d.Cluster == "" {
 		return errors.New("cluster is required")
 	} else if d.Service.Name == "" {
 		return errors.New("service name is required")
+	} else if d.Service.Container.MemoryReservation > d.Service.Container.Memory {
+		return errors.New("memory needs to be exceeding memory reservation")
 	}
 
 	return nil
