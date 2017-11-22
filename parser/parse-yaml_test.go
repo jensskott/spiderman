@@ -3,6 +3,8 @@ package parser
 import (
 	"testing"
 
+	"fmt"
+
 	"github.com/stretchr/testify/assert"
 )
 
@@ -20,6 +22,7 @@ service:
 	yamlFile := []byte(string(yamlFileStr))
 
 	service, err := ParseDefinition(yamlFile, "test-cluster")
+	fmt.Println(service)
 
 	assert.NoError(t, err)
 
@@ -38,22 +41,7 @@ func TestParseDefinitionYamlError(t *testing.T) {
 
 }
 
-func TestParseDefinitionError(t *testing.T) {
-	yamlFileStr := ""
-	yamlFile := []byte(string(yamlFileStr))
 
-	_, err := ParseDefinition(yamlFile, "")
-
-	assert.Error(t, err)
-
-	_, err = ParseDefinition(yamlFile, "test-cluster")
-
-	assert.Error(t, err)
-
-	_, err = ParseDefinition(yamlFile, "test-cluster")
-
-	assert.Error(t, err)
-}
 
 func TestParseDefinitionMemoryError(t *testing.T) {
 	yamlFileStr := `
