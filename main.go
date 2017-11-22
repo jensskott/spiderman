@@ -7,7 +7,6 @@ import (
 
 	"fmt"
 
-	"github.com/jensskott/spiderman/api"
 	"github.com/jensskott/spiderman/parser"
 	"gopkg.in/alecthomas/kingpin.v2"
 )
