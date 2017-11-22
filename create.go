@@ -8,7 +8,7 @@ import (
 	"github.com/jensskott/spiderman/parser"
 )
 
-func createService(def *parser.Definition) {
+func createService(def *parser.Definition) string {
 	ec2Client := api.Ec2Client(*region)
 	vpc, err := ec2Client.SearchVpc(def)
 	if err != nil {
@@ -53,5 +53,5 @@ func createService(def *parser.Definition) {
 		log.Fatal(err)
 	}
 
-	fmt.Println(fmt.Sprintf("Created service: %s", service))
+	return fmt.Sprintf("Created service: %s", service)
 }

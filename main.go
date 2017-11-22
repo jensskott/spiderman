@@ -27,11 +27,13 @@ func main() {
 	switch kingpin.MustParse(app.Parse(os.Args[1:])) {
 	case create.FullCommand():
 		def := parseYaml(*file, *cluster)
-		fmt.Println(def)
+		resp := createService(def)
+		fmt.Println(resp)
 
 	case update.FullCommand():
 		def := parseYaml(*file, *cluster)
-		fmt.Println(def)
+		resp := updateService(def)
+		fmt.Println(resp)
 	}
 }
 

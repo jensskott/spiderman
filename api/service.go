@@ -30,6 +30,22 @@ func (e *EcsImplementation) CreateService(def *parser.Definition, lb string, tas
 	return *resp.Service.ServiceName, nil
 }
 
+func (e *EcsImplementation) UpdateService(def *parser.Definition, taskDefinition string) (string, error) {
+
+	params := &ecs.UpdateServiceInput{
+		Cluster:        aws.String(def.Cluster),
+		DesiredCount:   aws.Int64(def.Service.Count),
+		Service:        aws.String(def.Service.Name),
+		TaskDefinition: aws.String(taskDefinition),
+	}
+	resp, err := e.Svc.UpdateService(params)
+	if err != nil {
+		return "", err
+	}
+
+	return *resp.Service.ServiceName, nil
+}
+
 // CreateTaskDefinition for the service in ECS
 func (e *EcsImplementation) CreateTaskDefinition(def *parser.Definition) (string, error) {
 	var env []*ecs.KeyValuePair
