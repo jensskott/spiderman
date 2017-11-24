@@ -9,7 +9,7 @@ import (
 )
 
 func updateService(def *parser.Definition) string {
-	ecsClient := api.EcsClient(*region)
+	ecsClient := api.EcsClient(*region, *key, *secret)
 
 	td, err := ecsClient.CreateTaskDefinition(def)
 	if err != nil {

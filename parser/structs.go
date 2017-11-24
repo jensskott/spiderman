@@ -20,8 +20,14 @@ type ContainerDefinition struct {
 }
 
 type Definition struct {
-	Service ServiceDefinition `yaml:"service"`
-	Cluster string
+	Service     ServiceDefinition `yaml:"service"`
+	Cluster     string
+	Credentials Credentials
+}
+
+type Credentials struct {
+	Key    string
+	Secret string
 }
 
 type Env struct {

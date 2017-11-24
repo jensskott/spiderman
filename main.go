@@ -20,6 +20,8 @@ var (
 	file    = app.Flag("file", "Your service yaml file.").Required().Short('f').String()
 	cluster = app.Flag("cluster", "The cluster you want to deploy to.").Required().Short('c').String()
 	region  = app.Flag("region", "Region of the cluster").Default("us-east-1").Short('r').String()
+	key     = app.Flag("key", "Aws key").Short('k').String()
+	secret  = app.Flag("secret", "Aws secret").Short('s').String()
 )
 
 func main() {
@@ -27,6 +29,9 @@ func main() {
 	switch kingpin.MustParse(app.Parse(os.Args[1:])) {
 	case create.FullCommand():
 		def := parseYaml(*file, *cluster)
+		def.Credentials.Key = *key
+		def.Credentials.Secret = *secret
+
 		resp := createService(def)
 		fmt.Println(resp)
 

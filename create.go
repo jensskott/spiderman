@@ -9,7 +9,7 @@ import (
 )
 
 func createService(def *parser.Definition) string {
-	ec2Client := api.Ec2Client(*region)
+	ec2Client := api.Ec2Client(*region, *key, *secret)
 	vpc, err := ec2Client.SearchVpc(def)
 	if err != nil {
 		log.Fatal(err)
@@ -24,7 +24,7 @@ func createService(def *parser.Definition) string {
 		log.Fatal(err)
 	}
 
-	elbClient := api.ElbV2Client(*region)
+	elbClient := api.ElbV2Client(*region, *key, *secret)
 
 	lb, err := elbClient.CreateLb(def, sg, subnets)
 	if err != nil {
@@ -41,7 +41,7 @@ func createService(def *parser.Definition) string {
 		log.Fatal(err)
 	}
 
-	ecsClient := api.EcsClient(*region)
+	ecsClient := api.EcsClient(*region, *key, *secret)
 
 	td, err := ecsClient.CreateTaskDefinition(def)
 	if err != nil {
